@@ -1,0 +1,272 @@
+class Pessoa {
+    public String nome;
+    public int idade;
+
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+}
+
+public class Main1 {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa("Alice", 25);
+        Pessoa p2 = new Pessoa("Bob", 30);
+
+        System.out.println("Pessoa 1: " + p1.nome + ", " + p1.idade + " anos");
+        System.out.println("Pessoa 2: " + p2.nome + ", " + p2.idade + " anos");
+    }
+}
+
+class Carro {
+    private String marca;
+    private int ano;
+
+    public Carro(String marca, int ano) {
+        this.marca = marca;
+        this.ano = ano;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+}
+
+public class Main2 {
+    public static void main(String[] args) {
+        Carro carro = new Carro("Toyota", 2020);
+        System.out.println("Marca: " + carro.getMarca());
+        System.out.println("Ano: " + carro.getAno());
+    }
+}
+class ContaBancaria {
+    private int numeroConta;
+    private double saldo;
+
+    public ContaBancaria(int numeroConta, double saldoInicial) {
+        this.numeroConta = numeroConta;
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+
+    public boolean sacar(double valor) {
+        if (valor <= saldo) {
+            saldo -= valor;
+            return true;
+        } else {
+            System.out.println("Saldo insuficiente!");
+            return false;
+        }
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+public class Main3 {
+    public static void main(String[] args) {
+        ContaBancaria conta = new ContaBancaria(1234, 500.0);
+        conta.depositar(200);
+        conta.sacar(100);
+        conta.sacar(700); // saldo insuficiente
+        System.out.println("Saldo atual: " + conta.getSaldo());
+    }
+}
+class Produto {
+    private String nome;
+    private double preco;
+
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        setPreco(preco);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        if (preco >= 0) {
+            this.preco = preco;
+        } else {
+            System.out.println("Preço inválido! Não pode ser negativo.");
+        }
+    }
+}
+
+public class Main4 {
+    public static void main(String[] args) {
+        Produto p1 = new Produto("Notebook", 3000);
+        Produto p2 = new Produto("Mouse", -50); // preço inválido
+
+        p2.setPreco(80); // corrige o preço
+
+        System.out.println(p1.getNome() + ": R$" + p1.getPreco());
+        System.out.println(p2.getNome() + ": R$" + p2.getPreco());
+    }
+}
+class Endereco {
+    private String rua;
+    private int numero;
+
+    public Endereco(String rua, int numero) {
+        this.rua = rua;
+        this.numero = numero;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+}
+
+class PessoaComEndereco {
+    private String nome;
+    private int idade;
+    private Endereco endereco;
+
+    public PessoaComEndereco(String nome, int idade, Endereco endereco) {
+        this.nome = nome;
+        this.idade = idade;
+        this.endereco = endereco;
+    }
+
+    public void mostrarDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("Endereço: " + endereco.getRua() + ", " + endereco.getNumero());
+        System.out.println("----------------------");
+    }
+}
+
+public class Main5 {
+    public static void main(String[] args) {
+        Endereco e1 = new Endereco("Rua A", 100);
+        Endereco e2 = new Endereco("Rua B", 200);
+
+        PessoaComEndereco pessoa1 = new PessoaComEndereco("Alice", 25, e1);
+        PessoaComEndereco pessoa2 = new PessoaComEndereco("Bob", 30, e2);
+
+        pessoa1.mostrarDados();
+        pessoa2.mostrarDados();
+    }
+}
+class Livro {
+    private String titulo;
+    private String autor;
+    private boolean disponivel;
+
+    public Livro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponivel = true;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void emprestar() {
+        if (disponivel) {
+            disponivel = false;
+            System.out.println("Livro emprestado: " + titulo);
+        } else {
+            System.out.println("Livro não disponível: " + titulo);
+        }
+    }
+
+    public void devolver() {
+        disponivel = true;
+        System.out.println("Livro devolvido: " + titulo);
+    }
+}
+
+class Biblioteca {
+    private Livro[] livros;
+    private int contador;
+
+    public Biblioteca(int capacidade) {
+        livros = new Livro[capacidade];
+        contador = 0;
+    }
+
+    public void adicionarLivro(Livro livro) {
+        if (contador < livros.length) {
+            livros[contador++] = livro;
+            System.out.println("Livro adicionado: " + livro.getTitulo());
+        } else {
+            System.out.println("Capacidade máxima atingida!");
+        }
+    }
+
+    public void emprestarLivro(String titulo) {
+        for (int i = 0; i < contador; i++) {
+            if (livros[i].getTitulo().equalsIgnoreCase(titulo)) {
+                livros[i].emprestar();
+                return;
+            }
+        }
+        System.out.println("Livro não encontrado: " + titulo);
+    }
+
+    public void devolverLivro(String titulo) {
+        for (int i = 0; i < contador; i++) {
+            if (livros[i].getTitulo().equalsIgnoreCase(titulo)) {
+                livros[i].devolver();
+                return;
+            }
+        }
+        System.out.println("Livro não encontrado: " + titulo);
+    }
+
+    public void mostrarLivros() {
+        System.out.println("Livros na biblioteca:");
+        for (int i = 0; i < contador; i++) {
+            String status = livros[i].isDisponivel() ? "Disponível" : "Emprestado";
+            System.out.println(livros[i].getTitulo() + " - " + status);
+        }
+        System.out.println("----------------------");
+    }
+}
+
+public class Main6 {
+    public static void main(String[] args) {
+        Biblioteca biblioteca = new Biblioteca(5);
+
+        Livro l1 = new Livro("O Senhor dos Anéis", "J.R.R. Tolkien");
+        Livro l2 = new Livro("Harry Potter", "J.K. Rowling");
+        Livro l3 = new Livro("1984", "George Orwell");
+
+        biblioteca.adicionarLivro(l1);
+        biblioteca.adicionarLivro(l2);
+        biblioteca.adicionarLivro(l3);
+
+        biblioteca.mostrarLivros();
+
+        biblioteca.emprestarLivro("Harry Potter");
+        biblioteca.mostrarLivros();
+
+        biblioteca.devolverLivro("Harry Potter");
+        biblioteca.mostrarLivros();
+    }
+}
+

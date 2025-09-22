@@ -1,0 +1,24 @@
+1) App de pedidos de restaurante:
+
+Garçons adicionam pedidos no final.
+
+Chefes retiram pedidos do início.
+Escolha: Lista encadeada → inserção no final e remoção no início são O(1).
+
+Justificativa: Arrays precisariam mover todos os elementos ao remover do início (ineficiente).
+
+2) Lista de usuários do Instagram:
+
+Muitas buscas por nome de usuário.
+
+Algoritmo requer acesso aleatório.
+Escolha: Array → acesso direto por índice é O(1).
+
+Justificativa: Listas encadeadas precisariam percorrer a lista inteira para acessar o meio (O(n)).
+
+3) Desvantagens de usar array para muitas inserções:
+
+Arrays têm tamanho fixo → quando cheio, é necessário criar um novo array e copiar os elementos (O(n)).
+
+Inserir no meio exige deslocar elementos → O(n).
+Conclusão: Arrays são ótimos para acesso rápido, mas inserções frequentes podem ser lentas.

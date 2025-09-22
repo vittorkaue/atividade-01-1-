@@ -1,0 +1,38 @@
+public class Vetores {
+    public static void main(String[] args) {
+
+        // ======== ITEM 1 ========
+        int[] idades = {12, 17, 19, 25, 8, 33, 15, 40, 21, 10};
+
+        System.out.println("Todas as idades:");
+        for (int idade : idades) {
+            System.out.print(idade + " ");
+        }
+
+        System.out.println("\n\nIdades maiores que 18 anos:");
+        for (int idade : idades) {
+            if (idade > 18) {
+                System.out.println(idade);
+            }
+        }
+
+        // ======== ITEM 2 ========
+        double[] notas = {7.5, 8.0, 6.0, 9.5};
+        double soma = 0;
+
+        System.out.println("\nNotas:");
+        for (double nota : notas) {
+            System.out.print(nota + " ");
+            soma += nota;
+        }
+
+        double media = soma / notas.length;
+        System.out.println("\n\nMédia das notas: " + media);
+
+        if (media >= 7) {
+            System.out.println("Aluno aprovado!");
+        } else {
+            System.out.println("Aluno reprovado!");
+        }
+    }
+}
